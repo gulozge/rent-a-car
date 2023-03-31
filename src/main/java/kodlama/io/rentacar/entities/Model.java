@@ -9,18 +9,21 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="brands")//snake_case
-public class Brand {
+@Table(name="models")
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    //@Column(name="")
     private String name;
-    @OneToMany(mappedBy = "brand")//ilişki sahibi olmayan
+    @ManyToOne
+    //@JsonManagedReference
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+    @OneToMany(mappedBy = "model")//ilişki sahibi değil
     //@JsonBackReference
-    private List<Model> models;
+    private List<Car> cars;
 }
