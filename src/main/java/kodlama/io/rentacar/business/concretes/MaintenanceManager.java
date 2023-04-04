@@ -79,6 +79,7 @@ public class MaintenanceManager implements MaintenanceService {
     public void delete(int carId) {
         checkIfMaintenanceExist(carId);
         changeCarStatus(carId,State.AVAILABLE);
+        repository.deleteById(carId);
     }
 
     private void checkIfMaintenanceExist(int id) {
