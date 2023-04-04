@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Setter
 @Getter
@@ -25,4 +27,6 @@ public class Car {
     @ManyToOne
     //@JsonManagedReference
     private Model model;
+    @OneToMany(mappedBy = "car")
+    List<Maintenance> maintenances;
 }

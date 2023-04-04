@@ -2,6 +2,7 @@ package kodlama.io.rentacar.api.controllers;
 
 import kodlama.io.rentacar.business.abstracts.CarService;
 import kodlama.io.rentacar.business.dto.requests.create.CreateCarRequest;
+import kodlama.io.rentacar.business.dto.requests.get.GetAllCarRequest;
 import kodlama.io.rentacar.business.dto.requests.update.UpdateCarRequest;
 import kodlama.io.rentacar.business.dto.responses.create.CreateCarResponse;
 import kodlama.io.rentacar.business.dto.responses.get.GetAllCarsResponse;
@@ -20,8 +21,8 @@ public class CarsController {
     private final CarService service;
 
     @GetMapping
-    public List<GetAllCarsResponse> getAll(){
-        return service.getAll();
+    public List<GetAllCarsResponse> getAll( GetAllCarRequest request){
+        return service.getAll(request);
     }
     @GetMapping("/{id}")
     public GetCarResponse getById(@PathVariable int id){
