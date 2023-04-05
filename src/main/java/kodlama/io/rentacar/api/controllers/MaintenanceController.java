@@ -4,7 +4,7 @@ import kodlama.io.rentacar.business.abstracts.MaintenanceService;
 import kodlama.io.rentacar.business.dto.requests.create.CreateMaintenanceRequest;
 import kodlama.io.rentacar.business.dto.requests.update.UpdateMaintenanceRequest;
 import kodlama.io.rentacar.business.dto.responses.create.CreateMaintenanceResponse;
-import kodlama.io.rentacar.business.dto.responses.get.GetAllMaintenanceResponse;
+import kodlama.io.rentacar.business.dto.responses.get.GetAllMaintenancesResponse;
 import kodlama.io.rentacar.business.dto.responses.get.GetMaintenanceResponse;
 import kodlama.io.rentacar.business.dto.responses.update.UpdateMaintenanceResponse;
 import lombok.AllArgsConstructor;
@@ -18,9 +18,8 @@ import java.util.List;
 @RequestMapping("/api/maintenance")
 public class MaintenanceController {
     private final MaintenanceService service;
-
-    @GetMapping("/")
-    public List<GetAllMaintenanceResponse> getAll() {
+    @GetMapping
+    public List<GetAllMaintenancesResponse> getAll() {
         return service.getAll();
     }
 
@@ -29,21 +28,25 @@ public class MaintenanceController {
         return service.getById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateMaintenanceResponse add(@RequestBody CreateMaintenanceRequest request) {
         return service.add(request);
     }
 
+    @PutMapping("/return/{carId}")
+    public GetMaintenanceResponse returnCarFromMaintenance(@PathVariable int carId) {
+        return service.returnCarFromMaintenance(carId);
+    }
+
     @PutMapping("/{id}")
-    public UpdateMaintenanceResponse update(@PathVariable int id, @RequestBody UpdateMaintenanceRequest request){
+    public UpdateMaintenanceResponse update(@PathVariable int id, @RequestBody UpdateMaintenanceRequest request) {
         return service.update(id, request);
     }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         service.delete(id);
     }
-
-
 }

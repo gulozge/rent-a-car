@@ -12,9 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetAllCarsResponse {
     private int id;
+    private int modelId;
+    private double dailyPrice;
     private int modelYear;
     private String plate;
-    private double dailyPrice;
     private State state;
-    private int modelId;
+//    private String modelName;
+//    private String modelBrandName;
 }

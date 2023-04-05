@@ -10,6 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UpdateModelResponse {
     private int id;
-    private String name;
     private int brandId;
+    private String name;
 }

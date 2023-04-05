@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
@@ -13,7 +13,8 @@ import java.util.Date;
 public class UpdateMaintenanceResponse {
     private int id;
     private int carId;
-    private Date sentDate;
-    private Date returnDate;
-    private boolean caseMaintenance;
+    private String information;
+    private boolean isCompleted;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 }

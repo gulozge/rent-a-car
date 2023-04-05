@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GetAllModelsResponse {
     private int id;
-    private String name;
     private int brandId;
+    private String name;
 
 }
