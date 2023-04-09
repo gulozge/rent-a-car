@@ -48,7 +48,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public UpdateModelResponse update(int id, UpdateModelRequest request) {
-        checkIfBrandExists(id);
+        checkIfModelExists(id);
         Model model=mapper.map(request,Model.class);
         model.setId(id);
         repository.save(model);
@@ -58,10 +58,10 @@ public class ModelManager implements ModelService {
 
     @Override
     public void delete(int id) {
-        checkIfBrandExists( id);
+        checkIfModelExists( id);
         repository.deleteById(id);
     }
-    private void checkIfBrandExists(int id){
+    private void checkIfModelExists(int id){
         if(!repository.existsById(id))throw new RuntimeException("Model Id does not exist");
     }
 }

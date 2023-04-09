@@ -51,7 +51,7 @@ public class CarManager implements CarService {
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest request) {
-        checkIfBrandExists(id);
+        checkIfCarExists(id);
         Car car=mapper.map(request,Car.class);
         car.setId(id);
         repository.save(car);
@@ -62,11 +62,11 @@ public class CarManager implements CarService {
 
     @Override
     public void delete(int id) {
-        checkIfBrandExists(id);
+        checkIfCarExists(id);
         repository.deleteById(id);
     }
 
-    private void checkIfBrandExists(int id){
+    private void checkIfCarExists(int id){
         if(!repository.existsById(id))throw new RuntimeException("Car Id does not exist");
     }
     public void changeState(int carId, State state) {

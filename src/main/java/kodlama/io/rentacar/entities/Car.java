@@ -1,5 +1,6 @@
 package kodlama.io.rentacar.entities;
 
+
 import jakarta.persistence.*;
 import kodlama.io.rentacar.entities.enums.State;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="cars")
+@Table(name = "cars")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +25,13 @@ public class Car {
     private double dailyPrice;
     @Enumerated(EnumType.STRING)
     private State state;
+
     @ManyToOne
-    //@JsonManagedReference
     private Model model;
+
     @OneToMany(mappedBy = "car")
-    List<Maintenance> maintenances;
+    private List<Maintenance> maintenances;
+
+    @OneToMany(mappedBy = "car")
+    private List<Rental> rentals;
 }
